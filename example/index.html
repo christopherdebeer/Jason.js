@@ -1,0 +1,95 @@
+<!DOCTYPE html> 
+<html>
+<head>
+	<title>Jason.js Example</title>
+	<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+	<script type="text/javascript" src="../src/Jason.js"></script>
+	<script type="text/javascript" src="http://yandex.st/highlightjs/6.1/highlight.min.js"></script>
+	<link type="text/css" href="http://yandex.st/highlightjs/6.1/styles/github.min.css" rel="stylesheet">
+	<script type="text/javascript">
+    	// highlight code
+		hljs.tabReplace = ' ';
+		hljs.initHighlightingOnLoad(); 
+	</script>
+	<style type="text/css"> 
+
+	body {
+		max-width: 800px;
+		min-width: 400px;
+		margin: 0 auto;
+	}
+
+	</style>
+</head>
+<body>
+
+<h1>Jason.js</h1>
+<p>For converting from JSON to HTML and back again.</p>
+
+<h2>Example J[a]SON</h2>
+<pre id="testJSON">
+<code class="javascript">
+ 
+</code>
+</pre>
+
+<h2>Result</h2>
+
+<pre id="result">
+<code class="html">
+
+</code>
+</pre>
+
+<script type="text/javascript">
+
+	var testJSON = {
+	 	div: {
+	 		attributes: {
+	 			id: "wrapper"
+	 		},
+	 		innerHTML: [
+	 		{h1:{
+	 			innerHTML: "My Favorite Header"
+	 		}},
+	 		{p: {
+	 			attributes: {
+	 				class: ["paragraph", "intro"]
+	 			},
+	 			innerHTML: [
+	 			{span: {
+	 				attributes: {},
+	 				innerHTML: "This is what "
+	 			}},
+	 			"we can do ",
+	 			{strong: {
+	 				innerHTML: "with Jason.js"
+	 			}}
+	 			]
+	 		}},
+	 		{img: {
+	 			attributes: {
+	 				src: "icon.jpg",
+	 				class: ["inlineImg"],
+	 				alt: "This is an Icon alt text"
+	 			}
+	 		}}
+
+	 		]
+	 	}
+	 };
+
+	$(function(){
+		$("#testJSON code").text(testJSON);
+		$("#result code").text(Jason.toHtml(testJSON).html());
+
+	});
+
+</script>
+
+
+
+
+
+</body>
+</html>
