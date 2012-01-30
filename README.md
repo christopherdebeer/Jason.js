@@ -11,17 +11,30 @@ Usage
 
 	var example = ["div", {id: myDiv}, ["span", "text within a span"], "This is a good ol textnode"]
 
-	// creates a jQuery object of the resultant markup
+	// returns a jQuery object of the resultant markup see _"to Html options"_
 	Jason.toHtml(example);
 
 
 **To Jason**
 
-	// takes a jQuery / or Html selector or object and generates JSON*
+	// takes a jQuery / or Html and generates JSON*
 	Jason.toJason($("div#myDiv"));
 
 	// or
 	Jason.toJason("<div id='myDiv'><span>text within a span</span>This is a good ol textnode</div>")
+
+**To Html Options**
+
+	// Jason.toHtml() can be passed options
+
+	// returns html
+	Jason.toHtml(example, {format: "html"})
+
+	// returns jquery (default)
+	Jason.toHtml(example, {format: "jquery"})
+
+	// returns an Object (for debuggin / dev)
+	Jason.toHtml(example, {format: "obj"})
 
 
 Status
@@ -34,7 +47,7 @@ Work in progress, please dont use this yet.
 JSON* (DSL)
 ------
 
-This is obviouly not generic/standard JSON, based on an implimentation I saw of Tim Farlands: [Don](https://github.com/twfarland/don). 
+This is obviouly not generic/standard JSON, but is based on an implimentation I saw of Tim Farlands: [Don](https://github.com/twfarland/don). 
 
 Basically all markup is represented as an Array of which the:
 
