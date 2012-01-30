@@ -7,6 +7,8 @@ Jason.js is a set of helper functions for expressing markup (html) as JSON* and 
 Usage
 -----
 
+Ive put Usage at the top of the Readme but be sure to check out "Syntax of htmlArrays" below for more info.
+
 **To Html**	
 
 	var example = ["div", {id: myDiv}, ["span", "text within a span"], "This is a good ol textnode"]
