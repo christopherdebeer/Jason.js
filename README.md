@@ -6,21 +6,22 @@ Jason.js is a set of helper functions for expressing markup (html) as JSON* and 
 
 Usage
 -----
-	
-	// creates a jQuery object of the resultant markup
-	Jason.toHtml(}
-		h1:{
-			attributes: {
-				class: "hdline",
-				id: "title",
-				style: "color: #ff0000;"
-			},
-			innerHTML: "I'm a Headline"
-		}
-	});
 
-	// takes a jQuery selector or object and generates JSON*
-	Jason.fromHtml("#title.hdline");
+**To Html**	
+
+	var example = ["div", {id: myDiv}, ["span", "text within a span"], "This is a good ol textnode"]
+
+	// creates a jQuery object of the resultant markup
+	Jason.toHtml(example);
+
+
+**To Jason**
+
+	// takes a jQuery / or Html selector or object and generates JSON*
+	Jason.toJason($("div#myDiv"));
+
+	// or
+	Jason.toJason("<div id='myDiv'><span>text within a span</span>This is a good ol textnode</div>")
 
 	// means you can do this
 	Jason.toHtml(jsonObject).find('p:nth-child(2n)');
@@ -37,45 +38,13 @@ Work in progress, please dont use this yet.
 JSON*
 ------
 
-This is obviouly not generic/standard JSON, and is specific to this use case, heres an example of the syntax:
+This is obviouly not generic/standard JSON, based on an implimentation I saw of Tim Farlands: [Don](https://github.com/twfarland/don), heres an example of the syntax:
 
 	
-	var testJSON = {
-		div: {
-			attributes: {
-				class: ["wrapper"],
-				id: "wrapper",
-			},
-			innerHTML: {
-				h1: {
-					attributes: {
-						class: ["hd", "bold"]
-					},
-					innerHTML: "headline"
-				},
-				p: {
-					attributes: {
-						class: "txt"
-					},
-					innerHTML: {
-						span: {
-							attributes:{
-								class: "emphasize"
-							},
-							innerHTML: "more text"
-						},
-						text: "this should be a text node",
-						strong: {
-							innerHTML: "i am strong"
-						}
-					}
-				},
-				img: {
-					attributes: {
-						src: "/images/coolPicBro.gif",
-						alt: "Cool story Bro"
-					}
-				}
-			}
-		}
-	}
+	var example = ["p.item",{style: 'display:block;', class: 'anotherClass'},
+		["span",{id: "innerSPAN"}, "text of the inner span"],
+		["span","asdasdasdasd",
+			["a.deep", {href: "/more.html", title: "link in a span in a p", alt: "deep link"}, "Deep Link"]
+		],
+		["a", {href: "/"}, "link"]
+	]

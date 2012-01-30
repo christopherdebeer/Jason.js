@@ -121,7 +121,10 @@ var test = ["p.item",{style: 'display:block;', class: 'anotherClass'},
 			// console.log("recived html, makeing jQuery obj.")
 		}
 
-		if ($this.length > 1) console.log("muliple objects passed")
+		if ($this.length > 1) {
+			console.log("muliple objects passed");
+			
+		}
 
 		console.log("$this: ", $($this)[0]);
 		var attrArr = $($this)[0].attributes;
