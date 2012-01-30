@@ -104,4 +104,8 @@ examples:
 Some sugar
 -----------
 
-As a bit of added sugar, elementTypes can contain CSS style selectors ie: `["h1#myTitle", "Awesome shortcut for an ID"]` or `["img.thumbnail", {src: "/path/to/thumb.jpg"}]` etc etc
+As a bit of added sugar, elementTypes can contain CSS style selectors ie:
+ 
+	["h1#myTitle", "Awesome shortcut for an ID"]  // IDs or 
+	["img.thumbnail", {src: "/path/to/thumb.jpg"}]` // Classes or
+	["p#intro.blue.puff", "A paragraph with ID and Classes but quicker"] // Both
