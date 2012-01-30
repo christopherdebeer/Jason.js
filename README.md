@@ -86,8 +86,8 @@ examples:
     htmlArray7 = []
     htmlArray8 = [["br"],["br"]]
 
-Syntax examples
----------------
+**More Examples**
+
 
 	var image = ["img",{src:"/path/to/image.jpg", alt: "Awesome Image Bro"}]
 
