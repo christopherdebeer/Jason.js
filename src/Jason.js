@@ -35,71 +35,91 @@ var test = ["p.item",{style: 'display:block;', class: 'anotherClass'},
 		if (typeof opts === 'undefined') opts = {format: 'jquery'}; // default to {return: "jquery"}
 		if (typeof opts.depth === 'undefined') opts.depth = 0;	
 
-		var _this = {};
-		var $this;
-		// get tag name or default to 'div'
-		_this.tagName = hArray[0].split(/\.|#/)[0] !== "" ? hArray[0].split(/\.|#/)[0] : "div";
-
-		$this = $("<" + _this.tagName + "/>");
 		
-		// does it have classes or ids in the name
-		_this.id = /#/.test(hArray[0]) ? hArray[0].split("#")[1].split(".")[0] : null;
-
-		$this.attr("id",_this.id);
-
-		if (/\./.test(hArray[0])) {
-			_this.classes = hArray[0].split(".");
-			_this.classes = _this.classes.map(function(cls){return cls.split("#")[0]})
-			_this.classes.shift();
-		}
-
-		// console.log(_this.classes);
-		$(_this.classes).each(function(i, cls) {if (typeof cls !== 'undefined') {$($this).addClass(cls);}})
 		
-
-		// if no attributes passed
+		// console.log("running toHtml: ", hArray, " is first elem an array: ", isArray(hArray[0]))
+		
 		var returned;
-		if (isArray(hArray[1]) || typeof hArray[1] === 'string') {
 
-			_this.html = [];
-			for (var x = 1; x < hArray.length; x++) {
-				if (typeof hArray[x] === 'string') {
-					_this.html.push(hArray[x]);
-					$this.append($(document.createTextNode(hArray[x])));
-				} else if (isArray(hArray[x])) {
+		// if an array of hArray's is passed ie: no container
+		if (isArray(hArray[0])) {
 
-					returned = toHtml(hArray[x],{format: opts.format, depth: opts.depth +1});
-					_this.html.push(returned);
-					$this.append(returned);
-				}
-			}
+			// console.log("array of hArray's passed");
+			var $container = $("<div/>");
+			$.each(hArray, function(i,subHArray) {
+				// console.log("for each sub hArray: ", subHArray)
+				$container.append(toHtml(hArray[i], {format: "jquery"}))
+			});
+			$this = $container.children();
 
-		// if attributes passed
 		} else {
-			
-			_this.html = [];
-			for (attr in hArray[1]) {
+		// a single hArray is passed ie: has container
+			// console.log("single hArray passed", hArray );
+			var _this = {};
+			var $this;
+			// get tag name or default to 'div'
+			_this.tagName = hArray[0].split(/\.|#/)[0] !== "" ? hArray[0].split(/\.|#/)[0] : "div";
 
-				if (attr === "class") {
-					
-					$.each(hArray[1][attr].split(" "), function(i,cls){$this.addClass(cls)});
-					if (typeof _this.classes === 'undefined') _this.classes = hArray[1][attr].split(" ");
-					else $.each(hArray[1][attr].split(" "), function(i,cls){_this.classes.push(cls)});
-				} else {
-					_this[attr] = hArray[1][attr];
-					$this.attr(attr,hArray[1][attr])	
+			$this = $("<" + _this.tagName + "/>");
+			
+			// does it have classes or ids in the name
+			_this.id = /#/.test(hArray[0]) ? hArray[0].split("#")[1].split(".")[0] : null;
+
+			$this.attr("id",_this.id);
+
+			if (/\./.test(hArray[0])) {
+				_this.classes = hArray[0].split(".");
+				_this.classes = _this.classes.map(function(cls){return cls.split("#")[0]})
+				_this.classes.shift();
+			}
+
+			// console.log(_this.classes);
+			$(_this.classes).each(function(i, cls) {if (typeof cls !== 'undefined') {$($this).addClass(cls);}})
+
+			if (isArray(hArray[1]) || typeof hArray[1] === 'string') {
+
+				_this.html = [];
+				for (var x = 1; x < hArray.length; x++) {
+					if (typeof hArray[x] === 'string') {
+						_this.html.push(hArray[x]);
+						$this.append($(document.createTextNode(hArray[x])));
+					} else if (isArray(hArray[x])) {
+
+						returned = toHtml(hArray[x],{format: opts.format, depth: opts.depth +1});
+						_this.html.push(returned);
+						$this.append(returned);
+					}
+				}
+
+			// if attributes passed
+			} else {
+				
+				_this.html = [];
+				for (attr in hArray[1]) {
+
+					if (attr === "class") {
+						
+						$.each(hArray[1][attr].split(" "), function(i,cls){$this.addClass(cls)});
+						if (typeof _this.classes === 'undefined') _this.classes = hArray[1][attr].split(" ");
+						else $.each(hArray[1][attr].split(" "), function(i,cls){_this.classes.push(cls)});
+					} else {
+						_this[attr] = hArray[1][attr];
+						$this.attr(attr,hArray[1][attr])	
+					}
+				}
+				for (var x = 2; x < hArray.length; x++) {
+					if (typeof hArray[x] === 'string') {
+						_this.html.push(hArray[x]);
+						$this.append($(document.createTextNode(hArray[x])));
+					} else if (isArray(hArray[x])) {
+						returned = toHtml(hArray[x], {format: opts.format, depth: opts.depth +1});
+						_this.html.push(returned);
+						$this.append(returned);
+					}
 				}
 			}
-			for (var x = 2; x < hArray.length; x++) {
-				if (typeof hArray[x] === 'string') {
-					_this.html.push(hArray[x]);
-					$this.append($(document.createTextNode(hArray[x])));
-				} else if (isArray(hArray[x])) {
-					returned = toHtml(hArray[x], {format: opts.format, depth: opts.depth +1});
-					_this.html.push(returned);
-					$this.append(returned);
-				}
-			}
+
+
 		}
 
 		if (opts.format === "obj") return _this;
@@ -122,11 +142,10 @@ var test = ["p.item",{style: 'display:block;', class: 'anotherClass'},
 		}
 
 		if ($this.length > 1) {
-			console.log("muliple objects passed");
-			
+			// console.log("muliple objects passed");			
 		}
 
-		console.log("$this: ", $($this)[0]);
+		// console.log("$this: ", $($this)[0]);
 		var attrArr = $($this)[0].attributes;
 		var attributes = {};
 		if (attrArr.length > 0 ) {
@@ -154,6 +173,6 @@ var test = ["p.item",{style: 'display:block;', class: 'anotherClass'},
 
 })(typeof exports === "object" ? exports : Jason = {}, jQuery)
 
-
-console.log("toHtml() 1: ", Jason.toHtml(test, {format: "obj"}));
+console.log("toHtml() 1 (no container): ", Jason.toHtml([["a",{href:"#"},"link"]]))
+console.log("toHtml() 2 (container): ", Jason.toHtml(test, {format: "obj"}));
 console.log("toJason() 1: ", Jason.toJason(Jason.toHtml(test, {format: "html"})));
