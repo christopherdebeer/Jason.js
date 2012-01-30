@@ -44,20 +44,50 @@ Work in progress, please dont use this yet.
 
 
 
-JSON* (DSL)
+Syntax of htmlArrays (JSON* DSL)
 ------
 
-This is obviouly not generic/standard JSON, but is based on an implimentation I saw of Tim Farlands: [Don](https://github.com/twfarland/don). 
+This is obviouly not generic/standard JSON, but is based on an implimentation of htmlArrays I saw in Tim Farlands' [Don](https://github.com/twfarland/don) module. 
 
-Basically all markup is represented as an Array of which the:
+The arrays must adhere to Jason's definition of an 'htmlArray'
 
-* First element is the element type (nodeName) ie: "div" or "p" or "span" etc etc..
-* Second element is (optional) an object representing the attributes of this element, so for example an image might be represented as so: ["img", {src: "/image.jpg", alt: "alt text"}]
-* Third and onward are either Strings (representing Text Nodes) or other Arrays following this syntax (representing elements contained within this element ie: children)
+An htmlArray is an array with either:
 
-If you dont have any attributes to represent then you can just omit the second element and continue with the contents.
+    [elementType]
+    [elementType, contents...]
+    [elementType, attributes]
+    [elementType, attributes, contents...]
+    [elementType, attributes, contents..., contents...]
+    []
+    [htmlArray...]
+ 
+where:
 
-Here are some examples of the syntax:
+* elementType is a string, e.g: "div"
+* contents is either one or more of:
+	- a string, e.g: "my title", or
+	- an htmlArray
+* attributes is a js object, e.g: {id:"mydiv"}
+
+examples:
+
+    htmlArray1 = ["br"]
+    htmlArray2 = ["h1", "page title"]
+    htmlArray3 = ["h1", 
+                    "page title",
+                    ["span", "subtitle"]]
+                    
+    htmlArray4 = ["meta", {name:"description", content:"some webpage"}]
+    htmlArray5 = ["article", {id:123}, "the article content"]
+    htmlArray6 = ["article", {id:123}, 
+                    "the article content",
+                    ["a", {href:"#"}, "some link"]]
+                    
+    htmlArray7 = []
+    htmlArray8 = [["br"],["br"]]
+
+Syntax examples
+---------------
 
 	var image = ["img",{src:"/path/to/image.jpg", alt: "Awesome Image Bro"}]
 
@@ -69,3 +99,9 @@ Here are some examples of the syntax:
 		],
 		["a", {href: "/"}, "link"]
 	]
+
+
+Some sugar
+-----------
+
+As a bit of added sugar, elementTypes can contain CSS style selectors ie: `["h1#myTitle", "Awesome shortcut for an ID"]` or `["img.thumbnail", {src: "/path/to/thumb.jpg"}]` etc etc
