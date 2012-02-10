@@ -1,6 +1,6 @@
 var jason = require("../src/Jason.js");
 var jquery = require("jquery");
-var asset = require("assert");
+var assert = require("assert");
 
 var test = ["p.item",{style: 'display:block;', class: 'anotherClass'},
 		["span",{id: "innerSPAN"}, "text of the inner span"],
