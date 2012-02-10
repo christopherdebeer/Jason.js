@@ -43,10 +43,15 @@ exports['Basic - <a> to HTML'] = function (test) {
 		d=true;
 		test.done();
 	}
-	jsdom.jQueryify(window, 'http://code.jquery.com/jquery-1.7.min.js' , function() {
-  		test.equal("<a href=\"#\" >link</a>", Jason.toHtml([["a",{href:"#"},"link"]]));
+
+	jsdom.env('http://google.com', [
+		'http://code.jquery.com/jquery-1.5.min.js'
+	],
+	function(errors, window) {
+		test.equal("<a href=\"#\" >link</a>", Jason.toHtml([["a",{href:"#"},"link"]]));
     	done();
 	});
+
     
     while (!d) {console.log("waiting for jsdom callback");}
 };
