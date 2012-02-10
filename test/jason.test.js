@@ -17,20 +17,26 @@ var jsdom  = require("jsdom"),
 
 
 exports['Basic - toHtml'] = function (test) {
+	console.log("Testing if toHtml is a function")
     test.equal(typeof Jason.toHtml, "function");
     test.done();
 };
 
 exports['Basic - toJason'] = function (test) {
+	console.log("Testing if toJason is a function")
     test.equal(typeof Jason.toJason, "function");
     test.done();
 };
 
 exports['Basic - <a> to HTML'] = function (test) {
-
+	console.log("launching JSDOM")
+	function done() {
+		console.log("JSDOM callback called");
+		test.done();
+	}
 	jsdom.jQueryify(window, 'http://code.jquery.com/jquery-1.7.min.js' , function() {
   		test.equal("<a href=\"#\" >link</a>", Jason.toHtml([["a",{href:"#"},"link"]]));
-    	test.done();
+    	done();
 	});
     
 };
