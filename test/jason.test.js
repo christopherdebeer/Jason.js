@@ -17,18 +17,25 @@ var jsdom  = require("jsdom"),
 
 
 exports['Basic - toHtml'] = function (test) {
+
+	test.expect(1);
 	console.log("Testing if toHtml is a function")
     test.equal(typeof Jason.toHtml, "function");
     test.done();
 };
 
 exports['Basic - toJason'] = function (test) {
+
+	test.expect(1);
 	console.log("Testing if toJason is a function")
     test.equal(typeof Jason.toJason, "function");
     test.done();
 };
 
 exports['Basic - <a> to HTML'] = function (test) {
+
+	test.expect(1);
+
 	console.log("launching JSDOM")
 	function done() {
 		console.log("JSDOM callback called");
