@@ -18,7 +18,5 @@ jsdom.jQueryify(window, 'http://code.jquery.com/jquery-1.7.min.js' , function() 
   assert.equal("<a href=\"#\" >link</a>", Jason.toHtml([["a",{href:"#"},"link"]]));
 });
 
-
-
 // console.log("toHtml() 2 (container): ", Jason.toHtml(test, {format: "obj"}));
 // console.log("toJason() 1: ", Jason.toJason(Jason.toHtml(test, {format: "html"})));
