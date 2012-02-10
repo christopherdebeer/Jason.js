@@ -37,23 +37,15 @@ exports['Basic - <a> to HTML'] = function (test) {
 	test.expect(1);
 
 	console.log("launching JSDOM");
-	var d=false;
-	function done() {
-		console.log("JSDOM callback called");
-		d=true;
-		test.done();
-	}
 
 	jsdom.env('http://google.com', [
 		'http://code.jquery.com/jquery-1.5.min.js'
 	],
 	function(errors, window) {
+		console.log("JSDOM callback called - running test");
 		test.equal("<a href=\"#\" >link</a>", Jason.toHtml([["a",{href:"#"},"link"]]));
-    	done();
+    	test.done();
 	});
-
-    
-    while (!d) {console.log("waiting for jsdom callback");}
 };
 
 
