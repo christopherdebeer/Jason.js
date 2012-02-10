@@ -1,7 +1,7 @@
 Jason
 ======
 
-[![Build Status](https://secure.travis-ci.org/[christopherdebeer]/[Jason.js].png)](http://travis-ci.org/[christopherdebeer]/[Jason.js]) 
+[![Build Status](https://secure.travis-ci.org/christopherdebeer/Jason.js.png)](http://travis-ci.org/christopherdebeer/Jason.js) 
 
 Jason.js is a set of helper functions for expressing markup (html) as JSON* and converting between the two.
 
