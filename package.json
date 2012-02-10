@@ -1,0 +1,32 @@
+{
+  "name": "jason.js",
+  "preferGlobal": "true",
+  "version": "0.3.0",
+  "author": "Christopher de Beer <christopherdebeer@gmail.com.com>",
+  "description": "json to html",
+  "scripts": {
+    "test": "nodeunit test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/christopherdebeer/Jason.js.git"
+  },
+  "keywords": [
+    "json",
+    "html",
+    "template",
+    "conversion"
+  ],
+  "dependencies": {
+    "jquery" :  ">=1.6.x"
+  },
+  "noAnalyze": true,
+  "devDependencies": {
+    "jquery" :  ">=1.6.x",
+    "nodeunit" : "0.6.4"
+  },
+  "license": "MIT",
+  "engine": {
+    "node": ">=0.4"
+  }
+}

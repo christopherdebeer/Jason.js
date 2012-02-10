@@ -3,15 +3,6 @@
 // Jason v0.0.2
 // based on Don / hArray markup
 
-var test = ["p.item",{style: 'display:block;', class: 'anotherClass'},
-				["span",{id: "innerSPAN"}, "text of the inner span"],
-				["span","asdasdasdasd",
-					["a.deep", {href: "/more.html", title: "link in a span in a p", alt: "deep link"}, "Deep Link"]
-				],
-				["a", {href: "/"}, "link"]
-			]
-
-
 ;(function(exports, $){
 
 
@@ -171,8 +162,4 @@ var test = ["p.item",{style: 'display:block;', class: 'anotherClass'},
 	exports.toHtml = toHtml;
 	exports.toJason = toJason;
 
-})(typeof exports === "object" ? exports : Jason = {}, jQuery)
-
-console.log("toHtml() 1 (no container): ", Jason.toHtml([["a",{href:"#"},"link"]]))
-console.log("toHtml() 2 (container): ", Jason.toHtml(test, {format: "obj"}));
-console.log("toJason() 1: ", Jason.toJason(Jason.toHtml(test, {format: "html"})));
+})(typeof exports === "object" ? exports : Jason = {}, typeof exports === "object" ? require("jquery") : jQuery)
