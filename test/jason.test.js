@@ -14,9 +14,27 @@ var test = ["p.item",{style: 'display:block;', class: 'anotherClass'},
 var jsdom  = require("jsdom"),
     window = jsdom.jsdom().createWindow();
 
-jsdom.jQueryify(window, 'http://code.jquery.com/jquery-1.7.min.js' , function() {
-  assert.equal("<a href=\"#\" >link</a>", Jason.toHtml([["a",{href:"#"},"link"]]));
-});
+
+
+exports['Basic - toHtml'] = function (test) {
+    test.equal(typeof Jason.toHtml, "function");
+    test.done();
+};
+
+exports['Basic - toJason'] = function (test) {
+    test.equal(typeof Jason.toJason, "function");
+    test.done();
+};
+
+exports['Basic - <a> to HTML'] = function (test) {
+
+	jsdom.jQueryify(window, 'http://code.jquery.com/jquery-1.7.min.js' , function() {
+  		test.equal("<a href=\"#\" >link</a>", Jason.toHtml([["a",{href:"#"},"link"]]));
+    	test.done();
+	});
+    
+};
+
 
 // console.log("toHtml() 2 (container): ", Jason.toHtml(test, {format: "obj"}));
 // console.log("toJason() 1: ", Jason.toJason(Jason.toHtml(test, {format: "html"})));
