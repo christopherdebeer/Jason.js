@@ -1,5 +1,5 @@
-var jason = require("../src/Jason.js");
-var jquery = require("jquery");
+var jQuery = require("jquery");
+var Jason = require("../src/Jason.js");
 var assert = require("assert");
 
 var test = ["p.item",{style: 'display:block;', class: 'anotherClass'},
