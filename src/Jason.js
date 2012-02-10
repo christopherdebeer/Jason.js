@@ -120,7 +120,7 @@
 
 
 
-	var toJason = function($this, opts) {
+	var fromHtml = function($this, opts) {
 		
 		if (!($this instanceof jQuery)) {
 			
@@ -149,7 +149,7 @@
 			var _this = [$this.get(0).tagName.toLowerCase(), attributes]
 			$.each($this.children(), function(index, $item) {
 				// console.log("item: ", $item)
-				_this.push(toJason($($item)))
+				_this.push(fromHtml($($item)))
 			})
 		} else {
 			_this = [$this.text(), attributes ]
@@ -160,6 +160,6 @@
 	}
 
 	exports.toHtml = toHtml;
-	exports.toJason = toJason;
+	exports.fromHtml = fromHtml;
 
 })(typeof exports === "object" ? exports : Jason = {}, typeof exports === "object" ? require("jquery") : jQuery)

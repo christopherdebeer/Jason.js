@@ -24,11 +24,11 @@ exports['Basic - toHtml'] = function (test) {
     test.done();
 };
 
-exports['Basic - toJason'] = function (test) {
+exports['Basic - fromHtml'] = function (test) {
 
 	test.expect(1);
 	console.log("Testing if toJason is a function")
-    test.equal(typeof Jason.toJason, "function");
+    test.equal(typeof Jason.fromHtml, "function");
     test.done();
 };
 
@@ -36,9 +36,11 @@ exports['Basic - <a> to HTML'] = function (test) {
 
 	test.expect(1);
 
-	console.log("launching JSDOM")
+	console.log("launching JSDOM");
+	var d=false;
 	function done() {
 		console.log("JSDOM callback called");
+		d=true;
 		test.done();
 	}
 	jsdom.jQueryify(window, 'http://code.jquery.com/jquery-1.7.min.js' , function() {
@@ -46,6 +48,7 @@ exports['Basic - <a> to HTML'] = function (test) {
     	done();
 	});
     
+    while (!d) {console.log("waiting for jsdom callback");}
 };
 
 
