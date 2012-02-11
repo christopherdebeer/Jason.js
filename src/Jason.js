@@ -162,4 +162,4 @@
 	exports.toHtml = toHtml;
 	exports.fromHtml = fromHtml;
 
-})(typeof exports === "object" ? exports : Jason = {}, typeof exports === "object" ? require("jquery") : jQuery)
+})(typeof exports === "object" ? exports : Jason = {},typeof exports === "object" ? require("jquery") : jQuery)
