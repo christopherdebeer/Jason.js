@@ -34,12 +34,6 @@ exports['Basic - fromHtml'] = function (test) {
 
 exports["Testing JSDOM"] = function (test) {
 
-	// test.expect(1);
-
-	// test.equal(1,1);
-
-	// console.log("launching JSDOM");
-
 
 	function domTest (window) {
 		test.equal(typeof window, "object");
@@ -51,17 +45,13 @@ exports["Testing JSDOM"] = function (test) {
 	function(errors, window) {
 
 		console.log("JSDOM callback called - running test");
-
 		//console.log(errors,window);
 		console.log("Errors: ", errors);
 		//console.log("Window: ", window);
 		console.log("==========>> ME <<===========");
+		
 		console.log("Type of 'test' = ", typeof test);
-
 		// test.equal("<a href=\"#\" >link</a>", Jason.toHtml([["a",{href:"#"},"link"]]));
-    	// test.done();
-		// test.equal(1,1);
-		// test.done();
 
 		domTest(window);
 		console.log("After function call out of callback")
