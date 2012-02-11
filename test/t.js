@@ -32,7 +32,7 @@ exports['Basic - fromHtml'] = function (test) {
 
 
 
-exports["Testing JSDOM"] = function (test) {
+exports["Testing JSDOM : return [object]"] = function (test) {
 
 
 	function domTest (window) {
@@ -49,11 +49,11 @@ exports["Testing JSDOM"] = function (test) {
 		console.log("Errors: ", errors);
 		//console.log("Window: ", window);
 		console.log("==========>> ME <<===========");
-		
-		console.log("Type of 'test' = ", typeof test);
-		// test.equal("<a href=\"#\" >link</a>", Jason.toHtml([["a",{href:"#"},"link"]]));
 
-		domTest(window);
+		console.log("Type of 'test' = ", typeof test);
+		var $obj = Jason.toHtml([["a",{href:"#"},"link"]], {format: "obj"});
+
+		domTest($obj);
 		console.log("After function call out of callback")
 
 	});
