@@ -51,9 +51,9 @@ exports["Testing JSDOM : return [object]"] = function (test) {
 		console.log("==========>> ME <<===========");
 
 		console.log("Type of 'test' = ", typeof test);
-		var $obj = Jason.toHtml([["a",{href:"#"},"link"]], {format: "obj"});
+		// test.equal("<a href=\"#\" >link</a> Jason.toHtml([["a",{href:"#"},"link"]]));
 
-		domTest($obj);
+		domTest(window);
 		console.log("After function call out of callback")
 
 	});
