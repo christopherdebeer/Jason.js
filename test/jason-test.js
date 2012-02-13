@@ -5,7 +5,10 @@ var mocha = require('mocha'),
 	jason = require('../src/Jason.js');
 
 
-var test1 = ["a","link"]
+var test1 = ["a","link"];
+function d (x) {
+	console.log("Debug: ", x);
+}
 
 describe('Jason Test Suite', function(){
 	
@@ -50,7 +53,8 @@ describe('Jason Test Suite', function(){
 					'https://raw.github.com/christopherdebeer/Jason.js/master/src/Jason.js'
 				],
 				function (errors, window) {
-					assert.equal(typeof window.Jason.toHtml(test1,{format: 'html'}) === 'string', true)
+					var link = window.Jason.toHtml(test1,{format: 'html'}); 
+					assert.equal(typeof link === 'string', true)
 					done();
 			});			
 		})
@@ -67,6 +71,21 @@ describe('Jason Test Suite', function(){
 					done();
 			});			
 		})
+
+		it('should return a String of an <a> tag (within JSDOM)', function(done){
+
+			var window = jsdom.jsdom().createWindow();
+			jsdom.env('http://google.com', [
+					'http://code.jquery.com/jquery-1.5.min.js',
+					'https://raw.github.com/christopherdebeer/Jason.js/master/src/Jason.js'
+				],
+				function (errors, window) {
+					var link = window.Jason.toHtml(test1,{format: 'html'});
+					assert.equal(link, "<a>link</a>")
+					done();
+			});			
+		})
+
 		
 	})
 
@@ -91,7 +110,18 @@ describe('Jason Test Suite', function(){
 			});	
 		})
 
-		it('should return a valid hArray')
+		it('should return an Array (within JSDOM)', function(done){
+			
+			var window = jsdom.jsdom().createWindow();
+			jsdom.env('http://google.com', [
+					'http://code.jquery.com/jquery-1.5.min.js',
+					'https://raw.github.com/christopherdebeer/Jason.js/master/src/Jason.js'
+				],
+				function (errors, window) {
+				assert.equal(window.Jason.fromHtml(window.$('a:first')) instanceof window.Array, true);
+				done();
+			});	
+		})
 		
 	})
 

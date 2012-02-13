@@ -113,7 +113,7 @@
 		}
 
 		if (opts.format === "obj") return _this;
-		else if (opts.format === "html") return "\n" + repeat("\t",opts.depth) + $this.wrap('<div/>').parent().html();
+		else if (opts.format === "html") return $this.wrap('<div/>').parent().html();
 		else return $this;
 	}
 
