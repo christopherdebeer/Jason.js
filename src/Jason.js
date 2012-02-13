@@ -5,7 +5,6 @@
 
 ;(function(exports, $){
 
-
 	function isObject ( obj ) {
 		return obj && (typeof obj  === "object");
 	}
@@ -73,7 +72,7 @@
 				for (var x = 1; x < hArray.length; x++) {
 					if (typeof hArray[x] === 'string') {
 						_this.html.push(hArray[x]);
-						$this.append($(document.createTextNode(hArray[x])));
+						$this.append($(window.document.createTextNode(hArray[x])));
 					} else if (isArray(hArray[x])) {
 
 						returned = toHtml(hArray[x],{format: opts.format, depth: opts.depth +1});
@@ -101,7 +100,7 @@
 				for (var x = 2; x < hArray.length; x++) {
 					if (typeof hArray[x] === 'string') {
 						_this.html.push(hArray[x]);
-						$this.append($(document.createTextNode(hArray[x])));
+						$this.append($(window.document.createTextNode(hArray[x])));
 					} else if (isArray(hArray[x])) {
 						returned = toHtml(hArray[x], {format: opts.format, depth: opts.depth +1});
 						_this.html.push(returned);
@@ -162,4 +161,4 @@
 	exports.toHtml = toHtml;
 	exports.fromHtml = fromHtml;
 
-})(typeof exports === "object" ? exports : Jason = {},typeof exports === "object" ? require("jquery") : jQuery)
+})(typeof exports === "object" ? exports : Jason = {},typeof exports === "object" ? require("jquery") : window.jQuery)
