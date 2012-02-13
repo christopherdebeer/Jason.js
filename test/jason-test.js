@@ -29,26 +29,44 @@ describe('Jason Test Suite', function(){
 			});	
 		})
 
-		it('should return a String (within JSDOM)', function(done){
+		it('should return a jQuery Object (within JSDOM)', function(done){
 
-			var debug = function(x) {
-				console.log("debug: ", x);
-			}
 			var window = jsdom.jsdom().createWindow();
 			jsdom.env('http://google.com', [
 					'http://code.jquery.com/jquery-1.5.min.js',
 					'https://raw.github.com/christopherdebeer/Jason.js/master/src/Jason.js'
 				],
 				function (errors, window) {
-					debug(window.Jason.toHtml(test1) instanceof jQuery);
-					assert.equal(window.Jason.toHtml(test1) instanceof jQuery, true)
+					assert.equal(window.Jason.toHtml(test1) instanceof window.jQuery, true)
 					done();
 			});			
 		})
 
-		it('should return a jQuery object')
+		it('should return a String (within JSDOM)', function(done){
 
-		it('should return a js Object')
+			var window = jsdom.jsdom().createWindow();
+			jsdom.env('http://google.com', [
+					'http://code.jquery.com/jquery-1.5.min.js',
+					'https://raw.github.com/christopherdebeer/Jason.js/master/src/Jason.js'
+				],
+				function (errors, window) {
+					assert.equal(typeof window.Jason.toHtml(test1,{format: 'html'}) === 'string', true)
+					done();
+			});			
+		})
+
+		it('should return a js Object (within JSDOM)', function(done){
+
+			var window = jsdom.jsdom().createWindow();
+			jsdom.env('http://google.com', [
+					'http://code.jquery.com/jquery-1.5.min.js',
+					'https://raw.github.com/christopherdebeer/Jason.js/master/src/Jason.js'
+				],
+				function (errors, window) {
+					assert.equal(typeof window.Jason.toHtml(test1, {format: 'obj'}) === 'object', true)
+					done();
+			});			
+		})
 		
 	})
 
