@@ -81,9 +81,13 @@ describe('Jason Test Suite', function(){
 		it('should be a function (within JSDOM)', function(done){
 			
 			var window = jsdom.jsdom().createWindow();
-			jsdom.env('http://google.com', ['http://code.jquery.com/jquery-1.5.min.js'], function (errors, window) {
-				assert.equal(typeof jason.fromHtml, 'function');
-				done(errors);
+			jsdom.env('http://google.com', [
+					'http://code.jquery.com/jquery-1.5.min.js',
+					'https://raw.github.com/christopherdebeer/Jason.js/master/src/Jason.js'
+				],
+				function (errors, window) {
+				assert.equal(typeof window.Jason.fromHtml, 'function');
+				done();
 			});	
 		})
 
