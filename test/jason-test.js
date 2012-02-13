@@ -6,7 +6,7 @@ describe('Jason Test Suite', function(){
 	
 	describe('.toHtml', function(){
 
-		it('Should be a function', function(done){
+		it('should be a function', function(done){
 			assert.equal(typeof jason.toHtml, 'function');
 			done();
 		})
@@ -22,12 +22,12 @@ describe('Jason Test Suite', function(){
 
 	describe(".fromHtml", function(){
 
-		it('Should be a function', function(done){
+		it('should be a function', function(done){
 			assert.equal(typeof jason.fromHtml, 'function');
 			done();
 		})
 
-		it('should return a vlait hArray')
+		it('should return a valid hArray')
 		
 	})
 
